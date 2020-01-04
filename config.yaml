@@ -1,6 +1,8 @@
 version:
-  current: 3.8.0-3917186
+  # current: 3.8.0-3917186
+  current: 3.8.0-3917187  # tmp testing
   previous: 3.8.0-3715251
 path:
-  dir_cig: 'E:/games/CloudImperiumGames/'
-  dir_data_root: 'D:/games/sc/game_data/'
+  dir_cig: 'E:/games/CloudImperiumGames/'  # where SC is installed
+  dir_data_root_win: 'D:/games/sc/game_data/'  # where parsed game files are written
+  dir_data_root_lin: '/media/mike/hdd/games/sc/game_files/'

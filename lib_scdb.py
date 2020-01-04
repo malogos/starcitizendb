@@ -2,6 +2,7 @@
 ''' lib for shared sc data parsing functions and variables '''
 
 import io
+import sys
 import yaml
 from pathlib import Path
 
@@ -9,13 +10,30 @@ from pathlib import Path
 def global_vars():
   ''' return variables such as file paths that are needed by several scripts '''
   v = {}
-  v['configs'] = yaml_read(Path.cwd() / 'config.yaml')
+  config = yaml_read(Path.cwd() / 'config.yaml')
 
-  abs_paths = ['dir_cig', 'dir_data_root']
+  # todo: pull current live/ptu version from CIG
+
+  abs_paths = ['dir_cig', 'dir_data_root_win', 'dir_data_root_lin']
   for ap in abs_paths:
-    v['configs']['path'][ap] = Path(v['configs']['path'][ap])
+    config['path'][ap] = Path(config['path'][ap])
 
-  return v
+  # set data root path based on OS being used
+  platform = sys.platform
+  if 'linux' in platform:
+    dir_data_root = config['path']['dir_data_root_lin']
+  elif 'win' in platform:
+    dir_data_root = config['path']['dir_data_root_win']
+  config['path']['dir_data_root'] = dir_data_root
+
+  # path to current version
+  dir_data_version_root = dir_data_root / config['version']['current']
+  config['path']['dir_data_version_root'] = dir_data_version_root
+
+  config['path']['origin'] = config['path']['dir_data_version_root'] / 'origin'
+  config['path']['output'] = config['path']['dir_data_version_root'] / 'output'
+
+  return config
 #
 def yaml_read(fp):
   ''' read in yaml file and return dct '''
@@ -37,8 +55,8 @@ def main():
   ''' oops '''
   print('this is a library...\n')
   print('config output:\n')
-  v = global_vars()
-  yaml_print(v['configs'])
+  config = global_vars()
+  yaml_print(config)
 #
 if __name__ == '__main__':
   main()
