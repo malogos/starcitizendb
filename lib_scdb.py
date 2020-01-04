@@ -33,6 +33,8 @@ def global_vars():
   config['path']['origin'] = config['path']['dir_data_version_root'] / 'origin'
   config['path']['output'] = config['path']['dir_data_version_root'] / 'output'
 
+  config['path']['foundry_origin'] = config['path']['origin'] / config['path']['foundry']
+
   return config
 #
 def yaml_read(fp):
@@ -50,6 +52,15 @@ def read_file(path, split=False):
       return f.read().splitlines()
     else:
        return f.read()
+#
+def get_paths_by_ext(dir_root_path, ext, recursive=True):
+  ''' return list of all files that have a given extension '''
+  if recursive:
+    paths = [f for f in dir_root_path.rglob("*") if f.suffix==ext]
+  else:
+    paths = [f for f in dir_root_path.iterdir() if f.suffix==ext]
+  paths.sort()
+  return paths
 #
 def main():
   ''' oops '''

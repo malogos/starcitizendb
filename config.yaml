@@ -7,3 +7,6 @@ path:
   dir_data_root_win: 'D:/games/sc/game_data/'  # where parsed game files are written
   dir_data_root_lin: '/media/mike/hdd/games/sc/game_files/'
   dir_p4k_tools: 'D:/games/sc/game_data/p4k_tools/'  # location of unp4k.exe, unforge.exe, etc
+  unp4k_exe: 'unp4k.exe'
+  unforge_exe: 'unforge.exe'
+  foundry: 'Data/Libs/Foundry/Records'
