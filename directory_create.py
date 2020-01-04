@@ -7,11 +7,12 @@ from pathlib import Path
 import lib_scdb
 from lib_scdb import global_vars
 
+config = global_vars()
+
 
 def create_data_dirs():
   ''' create directories for storing game files for current game version '''
   print('creating directories for storing game files for current game version')
-  config = global_vars()
   paths = [config['path']['dir_data_version_root'],
            config['path']['origin'],
            config['path']['output'],
@@ -28,6 +29,12 @@ def create_data_dirs():
   for path in paths:
     print('', str(path))
     make_dir(path)
+
+  output_subdirs = config['path']['output_subdirs']
+  for subdir in output_subdirs:
+    path_dir = config['path']['output'] / subdir
+    print('', str(path_dir))
+    make_dir(path_dir)
 
   ''' path_sets = [lib_sc.path_json]
   for path_set in path_sets:

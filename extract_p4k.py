@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 ''' pak data in SC dir -> XMLs in sc game_data
     can include copying Data.p4k, but it's easier to just manually copy it
+    todo: delete unforge_XMLs if not needed any more
 '''
 
 import os
@@ -35,7 +36,7 @@ def unp4k_and_unforge():
   move_unpacked()
 
   unforge_dcb(path_unforge_exe, path_game_dcb, path_game_xml)
-  # unforge_xmls(dir_xmls)
+  # unforge_xmls(dir_xmls)  # maybe not needed
 
 #
 def unp4k():

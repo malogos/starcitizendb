@@ -10,3 +10,4 @@ path:
   unp4k_exe: 'unp4k.exe'
   unforge_exe: 'unforge.exe'
   foundry: 'Data/Libs/Foundry/Records'
+  localization_global: 'Data/Localization/english/global.ini'

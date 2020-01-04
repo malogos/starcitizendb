@@ -33,7 +33,17 @@ def global_vars():
   config['path']['origin'] = config['path']['dir_data_version_root'] / 'origin'
   config['path']['output'] = config['path']['dir_data_version_root'] / 'output'
 
+  config['path']['output_subdirs'] = ['local']
+
   config['path']['foundry_origin'] = config['path']['origin'] / config['path']['foundry']
+  config['path']['df_components'] = config['path']['foundry_origin'] / 'entities/scitem/ships'  # df components
+
+  config['path']['localization_global'] = config['path']['origin'] / config['path']['localization_global']
+
+  config['path']['local'] = config['path']['output'] / 'local'
+  config['path']['global'] = config['path']['local'] / 'global.yaml'
+  config['path']['global_manu'] = config['path']['local'] / 'manufacturers.yaml'
+
 
   return config
 #
@@ -42,7 +52,12 @@ def yaml_read(fp):
   f = read_file(fp)
   return yaml.full_load(f)
 #
-def yaml_print(dct):
+def yaml_write(fp, content):
+  ''' write content to fp '''
+  with open(fp, 'w') as f:
+    yaml.dump(content, f, default_flow_style=False)
+#
+def yaml_pprint(dct):
   print(yaml.dump(dct, default_flow_style=False))
 #
 def read_file(path, split=False):
