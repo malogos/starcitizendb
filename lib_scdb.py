@@ -14,7 +14,7 @@ def global_vars():
 
   # todo: pull current live/ptu version from CIG
 
-  abs_paths = ['dir_cig', 'dir_data_root_win', 'dir_data_root_lin']
+  abs_paths = ['dir_cig', 'dir_data_root_win', 'dir_data_root_lin', 'dir_p4k_tools']
   for ap in abs_paths:
     config['path'][ap] = Path(config['path'][ap])
 
