@@ -6,6 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+xmltodict = "*"
+oyaml = "*"
 
 [requires]
 python_version = "3.8"

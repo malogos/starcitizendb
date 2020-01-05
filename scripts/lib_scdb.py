@@ -3,8 +3,10 @@
 
 import io
 import sys
-import yaml
+import oyaml as yaml
 from pathlib import Path
+
+import xmltodict
 
 
 def global_vars():
@@ -37,13 +39,13 @@ def global_vars():
 
   config['path']['foundry_origin'] = config['path']['origin'] / config['path']['foundry']
   config['path']['df_components'] = config['path']['foundry_origin'] / 'entities/scitem/ships'  # df components
+  config['path']['df_spaceships'] = config['path']['foundry_origin'] / 'entities/spaceships'  # df ships
 
   config['path']['localization_global'] = config['path']['origin'] / config['path']['localization_global']
 
   config['path']['local'] = config['path']['output'] / 'local'
   config['path']['global'] = config['path']['local'] / 'global.yaml'
   config['path']['global_manu'] = config['path']['local'] / 'manufacturers.yaml'
-
 
   return config
 #
@@ -77,12 +79,27 @@ def get_paths_by_ext(dir_root_path, ext, recursive=True):
   paths.sort()
   return paths
 #
+def xml_to_dct(xml_path, ordered=True, verbose=False):
+  ''' return xml as ordered dct '''
+  with open(xml_path, 'rb') as xml_string:
+    # try:
+      if verbose:
+        print(xml_path)
+      ordered_dct = xmltodict.parse(xml_string)
+      if not ordered:
+        return yaml.dump(ordered_dct, default_flow_style=False)
+        # return json.loads(json.dumps(ordered_dct, ensure_ascii=False))
+      else:
+        return ordered_dct
+    # except:
+      return {}
+#
 def main():
   ''' oops '''
   print('this is a library...\n')
   print('config output:\n')
   config = global_vars()
-  yaml_print(config)
+  yaml_pprint(config)
 #
 if __name__ == '__main__':
   main()

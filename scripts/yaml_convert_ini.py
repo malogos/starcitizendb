@@ -9,15 +9,15 @@ from lib_scdb import yaml_write
 
 config = global_vars()
 
-def main():
-  ''' '''
+def convert_ini():
+  ''' read global ini and write out localization dcts for items/ships and manufacturers '''
   print('Converting and writing localization data')
   # read in global ini
   path_ini = config['path']['localization_global']
   ini_lines = read_ini(path_ini)
 
   # convert to dcts
-  ini_dcts = convert_ini(ini_lines)
+  ini_dcts = convert_ini_to_dcts(ini_lines)
   item_dcts = parse_descriptions(ini_dcts)
   manu_dcts = parse_manufacturer(ini_lines)
   # yaml_print(item_dcts)
@@ -33,7 +33,7 @@ def read_ini(ini_path):
   ini_raw_list = [line.encode("utf-8") for line in ini_raw_list]
   return ini_raw_list
 #
-def convert_ini(ini_lines):
+def convert_ini_to_dcts(ini_lines):
   ''' return ini as list of dcts '''
   prefixes = ['vehicle_Name', 'vehicle_Desc', 'item_Name', 'item_Desc']
   prefixes = [prefix.encode("utf-8") for prefix in prefixes]

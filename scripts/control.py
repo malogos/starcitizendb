@@ -8,7 +8,7 @@ import fire
 import lib_scdb
 from directory_create import create_data_dirs
 from extract_p4k import unp4k_and_unforge
-
+from yaml_conver_ini import convert_ini
 
 
 def main():
@@ -17,7 +17,7 @@ def main():
   # unp4k_and_unforge()
 
   # convert xml data to yaml
-  
+  # convert_ini()
 
 #
 if __name__ == '__main__':
